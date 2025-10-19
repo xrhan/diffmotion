@@ -12,7 +12,7 @@ from PIL import Image
 from torchvision import transforms
 from video_model import train_diffusion as hvd
 from video_model.u_vit3d import *
-from video_model.channel_mixer import *
+from video_model.u_vit3d_mixer import *
 
 def count_trainable_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -36,10 +36,10 @@ _PRESETS = {
     "nattn_mid": dict(channels=[96,192,384,768],   emb_channels=768,  num_heads=6, num_updown_blocks=[2,2,3]),
 }
 _MODEL_REGISTRY = {
-    "uvit3d_all3":       ("UViT3D",               "default",   12,  9), # ModelClassName, preset_key, in_ch, out_ch
-    "uvit3d_mid_all3":   ("UViT3D",               "mid",   12,  9),
-    "uvit3d_deep_all3":  ("UViT3D",               "deep",   12,  9),
-    "uvit3d_mixer_all3": ("UViT3D_NT_ResDoubleMixer", "nattn_mid", 12, 9),
+    "uvit3d_all3":       ("UViT3D",        "default",   12,  9), # ModelClassName, preset_key, in_ch, out_ch
+    "uvit3d_mid_all3":   ("UViT3D",        "mid",   12,  9),
+    "uvit3d_deep_all3":  ("UViT3D",        "deep",   12,  9),
+    "uvit3d_mixer_all3": ("UViT3D_Mixer",  "nattn_mid", 12, 9),
     # add other modes as needed...
 }
 

@@ -4,7 +4,6 @@
 
 [**arXiv**](https://arxiv.org/pdf/2506.02473) | [**Project Page**](https://xrhan.github.io/diffmotion/) 
 
-
 ## 🍇 Introduction
 We introduce a generative perception model that, given a few frames of an object undergoing motion, produces diverse and plausible interpretations of its shape and material.
 
@@ -13,9 +12,18 @@ To use the UViT3D-Mixer model with shift-invariant neighborhood attention, you w
 
 For training the model, we include an example slurm script in the scripts folder for mixed precision (bf16) training on 4 A100-80G GPUs.
 
+## Inference
+
+
+### model checkpoint
+(coming soon)
+
+## Training
+(dataset)
+
 ## 🍒 Synthetic Data Generation
-We provide the code to generate textured, synthetic data from Mitsuba3, with ground truth labels of the geometry and materials.
-Please refer to.
+We provide the code to generate textured, synthetic data from Mitsuba3, with ground truth labels of the geometry and materials using Mitsuba3.
+Please refer to [DiffMotion-DataGen](https://github.com/xrhan/diffmotion_datagen).
 
 ## 🌰 Citation
 

@@ -9,7 +9,7 @@ import logging
 from accelerate import Accelerator
 from .denoiser import *
 from .video_loader import *
-from .channel_mixer import *
+from .u_vit3d_mixer import *
 
 
 def setup_logging(root_dir, save_name):

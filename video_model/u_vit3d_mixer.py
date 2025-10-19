@@ -56,7 +56,9 @@ class ChannelMixer(nn.Module):
 
 class UViT3D_Mixer(nn.Module):
     '''
-    UViT3D with Local Spatial/Temporal Neighborhood Attention + Channel Mixer
+    UViT3D-Mixer with Local Spatial/Temporal Attention + Channel Mixer
+    At finer scales (x2): [ResBlock * 2, Mixer, Spatial Nattn, Temporal Attn, Mixer]
+    At coarse scales (x2): [Global 3D Attn]
     '''
 
     def __init__(
