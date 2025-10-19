@@ -3,10 +3,14 @@ from inference_utils import *
 import datetime
 import glob
 import argparse
-import logging
-import sys
 from pathlib import Path
 from typing import Iterable, List
+
+try:
+    from tqdm.auto import tqdm
+except ImportError:
+    def tqdm(x, **kwargs):  # fallback: no-op
+        return x
 
 def setup_model_denoiser(train_mode, ckpt_path, device = 'cuda', ddp = True, full_ckpt=True):
     model = load_model(train_mode = train_mode, 
@@ -75,7 +79,8 @@ def test_videos_run(diffusion, scheduling_matrix, static_files_dir, save_dir,
 
     mapping = {}
     # 3) iterate and predict
-    for idx, p in enumerate(file_paths):
+    for idx, p in tqdm(enumerate(file_paths), total=len(file_paths),
+                       desc=f"Evaluating ({save_name})", unit="vid"):
         mapping[idx] = p
         rgb_frames = preprocess_video_framepaths(p, device, horizon = 3).float()
 
@@ -112,7 +117,7 @@ def test_videos_run(diffusion, scheduling_matrix, static_files_dir, save_dir,
     with open(json_path, 'w') as f:
         json.dump(mapping, f, indent=2)
 
-    print(f"[INFO] Saved.")
+    print(f"[INFO] Saved to {results_dir}.")
 
 
 ################### running inference experiment ###################
