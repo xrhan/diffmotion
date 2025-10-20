@@ -1,0 +1,9 @@
+accelerate==1.5.2
+omegaconf
+einops>=0.7
+numpy
+matplotlib
+opencv-python
+rotary-embedding-torch==0.8.6
+tqdm
+gdown
